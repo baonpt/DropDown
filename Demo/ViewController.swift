@@ -103,19 +103,18 @@ class ViewController: UIViewController {
 	}
 	
 	func customizeDropDown(_ sender: AnyObject) {
-		let appearance = DropDown.appearance()
-		
-		appearance.cellHeight = 60
-		appearance.backgroundColor = UIColor(white: 1, alpha: 1)
-		appearance.selectionBackgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2)
-//		appearance.separatorColor = UIColor(white: 0.7, alpha: 0.8)
-		appearance.cornerRadius = 10
-		appearance.shadowColor = UIColor(white: 0.6, alpha: 1)
-		appearance.shadowOpacity = 0.9
-		appearance.shadowRadius = 25
-		appearance.animationduration = 0.25
-		appearance.textColor = .darkGray
-//		appearance.textFont = UIFont(name: "Georgia", size: 14)
+		let appearance = DropDown()
+        
+        appearance.settings.interface.rowHeight = 60
+        appearance.settings.interface.backgroundColor = UIColor(white: 1, alpha: 1)
+        appearance.settings.interface.selectionBackgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2)
+        appearance.settings.interface.separatorColor = UIColor(white: 0.7, alpha: 0.8)
+        appearance.settings.interface.cornerRadius = 10
+        appearance.settings.interface.shadow.color = UIColor(white: 0.6, alpha: 1)
+        appearance.settings.interface.shadow.opacity = 0.9
+        appearance.settings.interface.shadow.radius = 25
+        appearance.settings.animation.duration = 0.25
+        appearance.settings.interface.textColor = .darkGray
 
 		if #available(iOS 11.0, *) {
 			appearance.setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
@@ -188,16 +187,8 @@ class ViewController: UIViewController {
                 self?.chooseArticleButton.setTitle("", for: .normal)
             }
         }
-		
-		// Action triggered on dropdown cancelation (hide)
-		//		dropDown.cancelAction = { [unowned self] in
-		//			// You could for example deselect the selected item
-		//			self.dropDown.deselectRowAtIndexPath(self.dropDown.indexForSelectedRow)
-		//			self.actionButton.setTitle("Canceled", forState: .Normal)
-		//		}
-		
-		// You can manually select a row if needed
-		//		dropDown.selectRowAtIndex(3)
+        
+        chooseDropDown.settings.interface.menuWidth = 300
 	}
 	
 	func setupAmountDropDown() {
@@ -228,6 +219,8 @@ class ViewController: UIViewController {
 		amountDropDown.selectionAction = { [weak self] (index, item) in
 			self?.amountButton.setTitle(item, for: .normal)
 		}
+        
+        amountDropDown.settings.interface.menuWidth = 300
 	}
 	
 	func setupChooseDropDown() {
